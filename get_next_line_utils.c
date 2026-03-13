@@ -6,7 +6,7 @@
 /*   By: ykosebas <ykosebas@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 14:20:09 by ykosebas          #+#    #+#             */
-/*   Updated: 2026/03/12 14:21:41 by ykosebas         ###   ########.fr       */
+/*   Updated: 2026/03/13 15:49:49 by ykosebas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	total_str[i] = '\0';
 	return (total_str);
+}
+char	*ft_strjoin_free(char *saved, char *buffer)
+{
+	char	*new_str;
+	
+	if (!saved)
+	{
+		saved = malloc(1);
+		if (!saved)
+			return (NULL);
+		saved[0] = '\0';
+	}
+	if (!buffer)
+	{
+		free(saved);
+		return (NULL);
+	}
+	new_str = ft_strjoin(saved, buffer);
+	free(saved);
+	return (new_str);
 }
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
