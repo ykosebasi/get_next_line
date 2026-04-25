@@ -6,18 +6,19 @@
 /*   By: ykosebas <ykosebas@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 13:18:59 by ykosebas          #+#    #+#             */
-/*   Updated: 2026/03/13 17:33:45 by ykosebas         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:47:35 by ykosebas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
 
-#include <unistd.h>
-#include <stdlib.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+# include <unistd.h>
+# include <stdlib.h>
 
 char	*get_next_line(int fd);
 char	*read_and_save(int fd, char *saved);

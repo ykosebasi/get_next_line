@@ -6,7 +6,7 @@
 /*   By: ykosebas <ykosebas@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 14:20:09 by ykosebas          #+#    #+#             */
-/*   Updated: 2026/03/13 15:49:49 by ykosebas         ###   ########.fr       */
+/*   Updated: 2026/04/13 17:38:32 by ykosebas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ char	*ft_strchr(const char *s, int c)
 	int		i;
 	char	b;
 
+	if (!s)
+		return (NULL);
 	b = (char)c;
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
 		if (s[i] == b)
 			return ((char *)&s[i]);
@@ -27,8 +29,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (b == '\0')
 		return ((char *)&s[i]);
-	else
-		return (NULL);
+	return (NULL);
 }
 
 size_t	ft_strlen(const char *s)
@@ -40,6 +41,7 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
@@ -67,10 +69,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	total_str[i] = '\0';
 	return (total_str);
 }
+
 char	*ft_strjoin_free(char *saved, char *buffer)
 {
 	char	*new_str;
-	
+
 	if (!saved)
 	{
 		saved = malloc(1);
@@ -87,18 +90,21 @@ char	*ft_strjoin_free(char *saved, char *buffer)
 	free(saved);
 	return (new_str);
 }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
 	char	*str;
+	size_t	i;
+	size_t	s_len;
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s) -start)
-		len = ft_strlen(s) - start;
-	str = malloc(sizeof(char) * (len + 1));
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	else if (len > s_len - start)
+		len = s_len - start;
+	str = malloc(len + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
